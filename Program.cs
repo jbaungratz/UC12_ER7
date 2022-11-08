@@ -29,6 +29,7 @@ Console.ResetColor();
 BarraCarregamento("Carregando", 100);
 
 List<PessoaFisica> listaPf = new List<PessoaFisica>();
+
 List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
 
 string? escolha;
@@ -89,6 +90,7 @@ Console.WriteLine(@$"
                         Console.WriteLine($"Digite o nome da pessoa física que deseja cadastrar");
                         novaPf.nome = Console.ReadLine();                      
 
+                        /*
                         bool dataValida;
 
                         do
@@ -107,10 +109,10 @@ Console.WriteLine(@$"
                             }
                             
                         } while (dataValida == false);
-
+                        */
                         Console.WriteLine($"Digite o número do CPF");
                         novaPf.cpf = Console.ReadLine();
-
+                        /*
                         Console.WriteLine($"Digite o rendimento mensal(digite apenas números)");
                         novaPf.rendimento = float.Parse(Console.ReadLine());
 
@@ -136,7 +138,19 @@ Console.WriteLine(@$"
                         
                         novaPf.endereco = novoEnd;
 
-                        listaPf.Add(novaPf);
+                        //listaPf.Add(novaPf);
+                        */
+
+                        using (StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
+                        {
+                          sw.WriteLine($"{novaPf.nome}");
+                          sw.WriteLine($"{novaPf.cpf}");  
+                        }
+
+                        //StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt");
+                        //sw.WriteLine(novaPf.nome);
+                        //sw.Close();
+
 
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine($"Cadastro realizado com Sucesso!");
@@ -146,6 +160,8 @@ Console.WriteLine(@$"
                     case "2":
 
                         Console.Clear();
+
+                        /*
                         if (listaPf.Count > 0) {
                             foreach (PessoaFisica cadaPessoa in listaPf)
                             {
@@ -166,6 +182,20 @@ Console.WriteLine(@$"
                             Console.WriteLine($"Lista Vazia.");
                             Thread.Sleep(3000);
                         }
+                        */
+
+                        using (StreamReader sw = new StreamReader($"Paulo.txt"))
+                        {
+                            string linha;
+                            while((linha = sw.ReadLine()) != null)
+                            {
+                                Console.WriteLine($"{linha}");
+                                
+                            }
+                        }
+                        Console.WriteLine($"Aperte 'Enter' para coontinuar.");
+                        Console.ReadLine();
+                        
 
                         break;               
                     case "0":
