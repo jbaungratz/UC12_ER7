@@ -32,6 +32,8 @@ List<PessoaFisica> listaPf = new List<PessoaFisica>();
 
 List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
 
+
+
 string? escolha;
 
 do
@@ -242,6 +244,8 @@ Console.WriteLine(@$"
                         
                         PessoaJuridica novaPj = new PessoaJuridica();
                         Endereco novoEndPj = new Endereco();
+                        
+                        //metodoPj.Inserir(novaPj);
 
                         Console.WriteLine($"Digite a razão social da pessoa jurídica que deseja cadastrar");
                         novaPj.nome = Console.ReadLine();                      
@@ -268,7 +272,7 @@ Console.WriteLine(@$"
 
                         Console.WriteLine($"Digite o rendimento mensal(digite apenas números)");
                         novaPj.rendimento = float.Parse(Console.ReadLine());
-
+                        /*
                         Console.WriteLine($"Digite o logradouro");
                         novoEndPj.logradouro = Console.ReadLine();
                         
@@ -288,7 +292,9 @@ Console.WriteLine(@$"
                         else {
                             novoEndPj.endComercial = false;
                         }
-                        
+                        */
+                        metodoPj.Inserir(novaPj);
+
                         novaPj.endereco = novoEndPj;
                         listaPj.Add(novaPj);
 
@@ -299,6 +305,26 @@ Console.WriteLine(@$"
                         break;
                     case "2":
 
+                        PessoaJuridica novaPJ = new PessoaJuridica();
+                        List<PessoaJuridica> listaPJ = metodoPj.Ler();
+                        /*
+                        foreach(PessoaJuridica cadaItem in listaPJ)
+                        
+                        {
+                            Console.Clear();
+                            Console.WriteLine(@$"
+                                Razão Social: {novaPJ.nome}
+                                Endereco: {novaPJ.endereco.logradouro}, {novaPJ.endereco.numero}
+                                CNPJ: {novaPJ.cnpj}
+                                Rendimento: {novaPJ.rendimento}
+                                Taxa de Imposto a ser paga é: {metodoPj.PagarImposto(novaPJ.rendimento).ToString("C")}
+                            ");
+
+                                Console.WriteLine($"Aperte 'Enter' para continuar");
+                                Console.ReadLine();                            
+                        }
+                        */
+                        
                         Console.Clear();
                         if (listaPj.Count > 0) {
                             foreach (PessoaJuridica cadaPJ in listaPj)
@@ -309,6 +335,7 @@ Console.WriteLine(@$"
                                 Razão Social: {cadaPJ.nome}
                                 Endereco: {cadaPJ.endereco.logradouro}, {cadaPJ.endereco.numero}
                                 CNPJ: {cadaPJ.cnpj}
+                                Rendimento: {cadaPJ.rendimento}                                
                                 Taxa de Imposto a ser paga é: {metodoPj.PagarImposto(cadaPJ.rendimento).ToString("C")}
                                 ");
 
@@ -322,6 +349,7 @@ Console.WriteLine(@$"
                             Console.WriteLine($"Lista Vazia.");
                             Thread.Sleep(3000);
                         }
+                        
 
                         break;               
 
